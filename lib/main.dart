@@ -164,12 +164,15 @@ class AxisPainter extends CustomPainter {
     var endingPointY = Offset(30, size.height / 2 - 200);
     var endingPointX = Offset(size.width - 30, size.height / 2);
 
+    // Drawing the axis lines
     canvas.drawLine(startingPoint, endingPointY, paint);
     canvas.drawLine(startingPoint, endingPointX, paint);
 
+    // Drawing the X-axis arrow
     canvas.drawLine(endingPointX, endingPointX + Offset(-12, 12), paint);
     canvas.drawLine(endingPointX, endingPointX + Offset(-12, -12), paint);
 
+    // Drawing the Y-axis arrow
     canvas.drawLine(endingPointY, endingPointY + Offset(12, 12), paint);
     canvas.drawLine(endingPointY, endingPointY + Offset(-12, 12), paint);
   }
@@ -200,6 +203,10 @@ class LineCodingPainter extends CustomPainter {
     double _availableWidth = size.width - 70;
     double _eachSignalBitWidth = _availableWidth / _bitStream.length;
 
+    if (_eachSignalBitWidth > 180) {
+      _eachSignalBitWidth = 180;
+    }
+
     for (int i = 0; i < _bitStream.length; i++) {
       int presentBit = int.parse(_bitStream[i]);
       if (presentBit == 1) {
@@ -207,6 +214,23 @@ class LineCodingPainter extends CustomPainter {
       } else {
         upp = false;
       }
+
+      final textStyle = TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+      );
+      final textSpan = TextSpan(
+        text: _bitStream[i],
+        style: textStyle,
+      );
+      final textPainter = TextPainter(
+        text: textSpan,
+        textDirection: TextDirection.ltr,
+      );
+      textPainter.layout(
+        minWidth: 0,
+        maxWidth: _eachSignalBitWidth,
+      );
 
       print("Present Bit: " + presentBit.toString());
       if (presentBit == previousBit) {
@@ -218,14 +242,36 @@ class LineCodingPainter extends CustomPainter {
           endingPoint,
           paint,
         );
+
+        double _bitWidth =
+            upp == true ? _eachSignalBitWidth : -_eachSignalBitWidth;
+
+        textPainter.paint(
+          canvas,
+          startingPoint +
+              Offset(
+                _eachSignalBitWidth / 2 - 5,
+                _bitWidth > 0 ? _bitWidth + 30 : 30,
+              ),
+        );
       } else {
+        double _bitWidth =
+            upp == true ? -_eachSignalBitWidth : _eachSignalBitWidth;
         startingPoint = endingPoint;
-        endingPoint = endingPoint +
-            Offset(0, upp == true ? -_eachSignalBitWidth : _eachSignalBitWidth);
+        endingPoint = endingPoint + Offset(0, _bitWidth);
         canvas.drawLine(
           startingPoint,
           endingPoint,
           paint,
+        );
+
+        textPainter.paint(
+          canvas,
+          startingPoint +
+              Offset(
+                _eachSignalBitWidth / 2 - 5,
+                _bitWidth > 0 ? _bitWidth + 30 : 30,
+              ),
         );
 
         startingPoint = endingPoint;
