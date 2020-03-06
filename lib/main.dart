@@ -142,7 +142,7 @@ class PainterArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       foregroundPainter: LineCodingPainter(_bitStream),
-      painter: AxisPainter(),
+      painter: AxisPainter(_bitStream),
       child: Center(
         child: Container(
           height: MediaQuery.of(context).size.height - 200,
@@ -153,6 +153,9 @@ class PainterArea extends StatelessWidget {
 }
 
 class AxisPainter extends CustomPainter {
+  final String _bitStream;
+  AxisPainter(this._bitStream);
+
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
@@ -175,6 +178,28 @@ class AxisPainter extends CustomPainter {
     // Drawing the Y-axis arrow
     canvas.drawLine(endingPointY, endingPointY + Offset(12, 12), paint);
     canvas.drawLine(endingPointY, endingPointY + Offset(-12, 12), paint);
+
+    double _availableWidth = size.width - 70;
+    double _eachSignalBitWidth = _availableWidth / _bitStream.length;
+
+    if (_eachSignalBitWidth > 180) {
+      _eachSignalBitWidth = 180;
+    }
+
+    var paintSeparator = Paint()
+      ..color = Colors.black12
+      ..strokeWidth = 2
+      ..strokeCap = StrokeCap.round;
+
+    // Drawing the bit separators
+
+    for (int i = 1; i < _bitStream.length; i++) {
+      canvas.drawLine(
+        endingPointY + Offset(_eachSignalBitWidth * i, 0),
+        startingPoint + Offset(_eachSignalBitWidth * i, 0),
+        paintSeparator,
+      );
+    }
   }
 
   @override
