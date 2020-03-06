@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: Change the body to include the RZ Painter
 class UnicodeRZPainter extends CustomPainter {
   final String _bitStream;
   UnicodeRZPainter(this._bitStream);
