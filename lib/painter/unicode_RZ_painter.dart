@@ -63,23 +63,32 @@ class UnicodeRZPainter extends CustomPainter {
         // double _bitWidth =
         //     upp == true ? _eachSignalBitWidth : -_eachSignalBitWidth;
 
-        // textPainter.paint(
-        //   canvas,
-        //   startingPoint +
-        //       Offset(
-        //         _eachSignalBitWidth / 2 - 5,
-        //         _bitWidth > 0 ? _bitWidth + 30 : 30,
-        //       ),
-        // );
+        textPainter.paint(
+          canvas,
+          startingPoint +
+              Offset(
+                _eachSignalBitWidth / 2 - 5,
+                30,
+              ),
+        );
       } else {
         // double _bitWidth =
         //     upp == true ? -_eachSignalBitWidth : _eachSignalBitWidth;
         startingPoint = endingPoint;
-        endingPoint = endingPoint + Offset(0, -(_eachSignalBitWidth * 1.2));
+        endingPoint = endingPoint + Offset(0, -(_eachSignalBitWidth));
         canvas.drawLine(
           startingPoint,
           endingPoint,
           paint,
+        );
+
+        textPainter.paint(
+          canvas,
+          startingPoint +
+              Offset(
+                _eachSignalBitWidth / 2 - 5,
+                30,
+              ),
         );
 
         // textPainter.paint(
@@ -100,7 +109,7 @@ class UnicodeRZPainter extends CustomPainter {
         );
 
         startingPoint = endingPoint;
-        endingPoint = endingPoint + Offset(0, _eachSignalBitWidth * 1.2);
+        endingPoint = endingPoint + Offset(0, _eachSignalBitWidth);
         canvas.drawLine(
           startingPoint,
           endingPoint,
