@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class UnicodeNRZPainter extends CustomPainter {
+class UnipolarRZPainter extends CustomPainter {
   final String _bitStream;
-  UnicodeNRZPainter(this._bitStream);
+  UnipolarRZPainter(this._bitStream);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -14,8 +14,8 @@ class UnicodeNRZPainter extends CustomPainter {
     var startingPoint;
     var endingPoint = Offset(30, size.height / 2);
 
-    int previousBit = 0;
-    bool upp = false;
+    // int previousBit = 0;
+    // bool upp = false;
 
     double _availableWidth = size.width - 70;
     double _eachSignalBitWidth = _availableWidth / _bitStream.length;
@@ -26,11 +26,11 @@ class UnicodeNRZPainter extends CustomPainter {
 
     for (int i = 0; i < _bitStream.length; i++) {
       int presentBit = int.parse(_bitStream[i]);
-      if (presentBit == 1) {
-        upp = true;
-      } else {
-        upp = false;
-      }
+      // if (presentBit == 1) {
+      //   upp = true;
+      // } else {
+      //   upp = false;
+      // }
 
       final textStyle = TextStyle(
         color: Colors.black,
@@ -50,8 +50,7 @@ class UnicodeNRZPainter extends CustomPainter {
       );
 
       print("Present Bit: " + presentBit.toString());
-      if (presentBit == previousBit) {
-        print("equal");
+      if (presentBit == 0) {
         startingPoint = endingPoint;
         endingPoint = endingPoint + Offset(_eachSignalBitWidth, 0);
         canvas.drawLine(
@@ -60,22 +59,22 @@ class UnicodeNRZPainter extends CustomPainter {
           paint,
         );
 
-        double _bitWidth =
-            upp == true ? _eachSignalBitWidth : -_eachSignalBitWidth;
+        // double _bitWidth =
+        //     upp == true ? _eachSignalBitWidth : -_eachSignalBitWidth;
 
         textPainter.paint(
           canvas,
           startingPoint +
               Offset(
                 _eachSignalBitWidth / 2 - 5,
-                _bitWidth > 0 ? _bitWidth + 30 : 30,
+                30,
               ),
         );
       } else {
-        double _bitWidth =
-            upp == true ? -_eachSignalBitWidth : _eachSignalBitWidth;
+        // double _bitWidth =
+        //     upp == true ? -_eachSignalBitWidth : _eachSignalBitWidth;
         startingPoint = endingPoint;
-        endingPoint = endingPoint + Offset(0, _bitWidth);
+        endingPoint = endingPoint + Offset(0, -(_eachSignalBitWidth));
         canvas.drawLine(
           startingPoint,
           endingPoint,
@@ -87,19 +86,44 @@ class UnicodeNRZPainter extends CustomPainter {
           startingPoint +
               Offset(
                 _eachSignalBitWidth / 2 - 5,
-                _bitWidth > 0 ? _bitWidth + 30 : 30,
+                30,
               ),
         );
 
+        // textPainter.paint(
+        //   canvas,
+        //   startingPoint +
+        //       Offset(
+        //         _eachSignalBitWidth / 2 - 5,
+        //         _bitWidth > 0 ? _bitWidth + 30 : 30,
+        //       ),
+        // );
+
         startingPoint = endingPoint;
-        endingPoint = endingPoint + Offset(_eachSignalBitWidth, 0);
+        endingPoint = endingPoint + Offset(_eachSignalBitWidth / 2, 0);
+        canvas.drawLine(
+          startingPoint,
+          endingPoint,
+          paint,
+        );
+
+        startingPoint = endingPoint;
+        endingPoint = endingPoint + Offset(0, _eachSignalBitWidth);
+        canvas.drawLine(
+          startingPoint,
+          endingPoint,
+          paint,
+        );
+
+        startingPoint = endingPoint;
+        endingPoint = endingPoint + Offset(_eachSignalBitWidth / 2, 0);
         canvas.drawLine(
           startingPoint,
           endingPoint,
           paint,
         );
       }
-      previousBit = presentBit;
+      // previousBit = presentBit;
     }
   }
 

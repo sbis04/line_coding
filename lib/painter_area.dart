@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'painter/axis_painter.dart';
-import 'painter/unicode_NRZ_painter.dart';
-import 'painter/unicode_RZ_painter.dart';
+import 'painter/unipolar_NRZ_painter.dart';
+import 'painter/unipolar_RZ_painter.dart';
 
 class PainterArea extends StatelessWidget {
   final String _bitStream;
@@ -11,7 +11,7 @@ class PainterArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      foregroundPainter: UnicodeRZPainter(_bitStream),
+      foregroundPainter: UnipolarRZPainter(_bitStream),
       painter: AxisPainter(_bitStream),
       child: Center(
         child: Container(

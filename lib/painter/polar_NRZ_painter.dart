@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // TODO: Change the body to include the RZ Painter
-class UnicodeNRZPainter extends CustomPainter {
+class PolarNRZPainter extends CustomPainter {
   final String _bitStream;
-  UnicodeNRZPainter(this._bitStream);
+  PolarNRZPainter(this._bitStream);
 
   @override
   void paint(Canvas canvas, Size size) {
