@@ -155,10 +155,10 @@ class PainterArea extends StatelessWidget {
 class AxisPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint();
-    paint.color = Colors.black54;
-    paint.strokeWidth = 2;
-    paint.strokeCap = StrokeCap.round;
+    var paint = Paint()
+      ..color = Colors.black54
+      ..strokeWidth = 2
+      ..strokeCap = StrokeCap.round;
 
     var startingPoint = Offset(30, size.height / 2);
     var endingPointY = Offset(30, size.height / 2 - 200);
@@ -186,10 +186,10 @@ class LineCodingPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint();
-    paint.color = Colors.red;
-    paint.strokeWidth = 4;
-    paint.strokeCap = StrokeCap.round;
+    var paint = Paint()
+      ..color = Colors.red
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
 
     var startingPoint;
     var endingPoint = Offset(30, size.height / 2);
