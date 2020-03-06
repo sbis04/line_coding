@@ -34,18 +34,21 @@ class _LineCodingState extends State<LineCoding> {
         title: Text("Line Coding"),
         elevation: 0,
       ),
-      body: Column(
-        children: <Widget>[
-          RetreiveCode(onTextChange: (String str, bool valid) {
-            setState(() {
-              textString = str;
-              isValid = valid;
-            });
-          }),
-          (textString == "" || isValid == false)
-              ? Container()
-              : PainterArea(textString),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            RetreiveCode(onTextChange: (String str, bool valid) {
+              setState(() {
+                textString = str;
+                isValid = valid;
+              });
+            }),
+            (textString == "" || isValid == false)
+                ? Container()
+                : PainterArea(textString),
+          ],
+        ),
       ),
     );
   }
@@ -61,10 +64,18 @@ class RetreiveCode extends StatefulWidget {
 
 class _RetreiveCodeState extends State<RetreiveCode> {
   final textController = TextEditingController();
+  FocusNode textFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    textFocusNode = FocusNode();
+  }
 
   @override
   void dispose() {
     textController.dispose();
+    textFocusNode.dispose();
     super.dispose();
   }
 
@@ -93,6 +104,7 @@ class _RetreiveCodeState extends State<RetreiveCode> {
           SizedBox(
             width: 180,
             child: TextField(
+              focusNode: textFocusNode,
               controller: textController,
               decoration: InputDecoration(
                 labelText: 'Enter binary code',
@@ -102,6 +114,7 @@ class _RetreiveCodeState extends State<RetreiveCode> {
           ),
           RaisedButton(
             onPressed: () {
+              FocusScope.of(context).unfocus();
               setState(() {
                 if (textController.text.isEmpty == true ||
                     _validateString(textController.text) != null) {
