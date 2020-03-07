@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class UnipolarRZPainter extends CustomPainter {
+  final BuildContext context;
   final String _bitStream;
-  UnipolarRZPainter(this._bitStream);
+  UnipolarRZPainter(this.context, this._bitStream);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -14,9 +15,6 @@ class UnipolarRZPainter extends CustomPainter {
     var startingPoint;
     var endingPoint = Offset(30, size.height / 2);
 
-    // int previousBit = 0;
-    // bool upp = false;
-
     double _availableWidth = size.width - 70;
     double _eachSignalBitWidth = _availableWidth / _bitStream.length;
 
@@ -26,19 +24,14 @@ class UnipolarRZPainter extends CustomPainter {
 
     for (int i = 0; i < _bitStream.length; i++) {
       int presentBit = int.parse(_bitStream[i]);
-      // if (presentBit == 1) {
-      //   upp = true;
-      // } else {
-      //   upp = false;
-      // }
 
-      final textStyle = TextStyle(
-        color: Colors.black,
-        fontSize: 20,
-      );
+      // final textStyle = TextStyle(
+      //   color: Colors.black,
+      //   fontSize: 20,
+      // );
       final textSpan = TextSpan(
         text: _bitStream[i],
-        style: textStyle,
+        style: Theme.of(context).textTheme.caption,
       );
       final textPainter = TextPainter(
         text: textSpan,

@@ -69,6 +69,7 @@ class _LineCodingState extends State<LineCoding> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text("Line Coding"),
         elevation: 0,
         actions: <Widget>[

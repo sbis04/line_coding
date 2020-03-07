@@ -60,6 +60,7 @@ class _RetreiveCodeState extends State<RetreiveCode> {
               decoration: InputDecoration(
                 labelText: 'Enter binary code',
                 errorText: _validateString(textController.text),
+                errorStyle: TextStyle(fontSize: 15, color: Colors.redAccent),
               ),
             ),
           ),
@@ -79,7 +80,7 @@ class _RetreiveCodeState extends State<RetreiveCode> {
                 widget.onTextChange(textString, isValid);
               });
             },
-            color: Colors.orange[800],
+            color: Theme.of(context).buttonColor,
             child: Text(
               "DRAW",
               style: TextStyle(

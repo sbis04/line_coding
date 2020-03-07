@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PolarRZPainter extends CustomPainter {
+  final BuildContext context;
   final String _bitStream;
-  PolarRZPainter(this._bitStream);
+  PolarRZPainter(this.context, this._bitStream);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -24,13 +25,13 @@ class PolarRZPainter extends CustomPainter {
     for (int i = 0; i < _bitStream.length; i++) {
       int presentBit = int.parse(_bitStream[i]);
 
-      final textStyle = TextStyle(
-        color: Colors.black,
-        fontSize: 20,
-      );
+      // final textStyle = TextStyle(
+      //   color: Colors.black,
+      //   fontSize: 20,
+      // );
       final textSpan = TextSpan(
         text: _bitStream[i],
-        style: textStyle,
+        style: Theme.of(context).textTheme.caption,
       );
       final textPainter = TextPainter(
         text: textSpan,

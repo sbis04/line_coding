@@ -13,34 +13,35 @@ class PainterArea extends StatelessWidget {
   final String _type;
   PainterArea(this._bitStream, this._type);
 
-  CustomPainter _painterSelector(String _bitStream, String _type) {
+  CustomPainter _painterSelector(
+      BuildContext context, String _bitStream, String _type) {
     switch (_type) {
       case "unipolarNRZ":
-        return UnipolarNRZPainter(_bitStream);
+        return UnipolarNRZPainter(context, _bitStream);
         break;
 
       case "unipolarRZ":
-        return UnipolarRZPainter(_bitStream);
+        return UnipolarRZPainter(context, _bitStream);
         break;
 
       case "polarNRZ":
-        return PolarNRZPainter(_bitStream);
+        return PolarNRZPainter(context, _bitStream);
         break;
 
       case "polarRZ":
-        return PolarRZPainter(_bitStream);
+        return PolarRZPainter(context, _bitStream);
         break;
 
       case "bipolarNRZ":
-        return BipolarNRZPainter(_bitStream);
+        return BipolarNRZPainter(context, _bitStream);
         break;
 
       case "bipolarRZ":
-        return BipolarRZPainter(_bitStream);
+        return BipolarRZPainter(context, _bitStream);
         break;
 
       default:
-        return UnipolarNRZPainter(_bitStream);
+        return UnipolarNRZPainter(context, _bitStream);
         break;
     }
   }
@@ -48,10 +49,11 @@ class PainterArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      foregroundPainter: _painterSelector(_bitStream, _type),
-      painter: AxisPainter(_bitStream, _type),
+      foregroundPainter: _painterSelector(context, _bitStream, _type),
+      painter: AxisPainter(context, _bitStream, _type),
       child: Center(
         child: Container(
+          // color: Theme.of(context).backgroundColor,
           height: MediaQuery.of(context).size.height - 200,
         ),
       ),

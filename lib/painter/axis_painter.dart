@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AxisPainter extends CustomPainter {
+  final BuildContext context;
   final String _bitStream;
   final String _type;
-  AxisPainter(this._bitStream, this._type);
+  AxisPainter(this.context, this._bitStream, this._type);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -15,7 +16,7 @@ class AxisPainter extends CustomPainter {
     }
 
     var paint = Paint()
-      ..color = Colors.black54
+      ..color = Theme.of(context).highlightColor
       ..strokeWidth = 2
       ..strokeCap = StrokeCap.round;
 
@@ -48,7 +49,7 @@ class AxisPainter extends CustomPainter {
     canvas.drawLine(endingPointY, endingPointY + Offset(-12, 12), paint);
 
     var paintSeparator = Paint()
-      ..color = Colors.black12
+      ..color = Theme.of(context).dividerColor
       ..strokeWidth = 2
       ..strokeCap = StrokeCap.round;
 
