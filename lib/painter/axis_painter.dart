@@ -7,6 +7,13 @@ class AxisPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    bool _requireExtendedAxis = true;
+
+    var _codingStyleRequiringExtendedAxis = ["unipolarNRZ", "unipolarRZ"];
+    if (_codingStyleRequiringExtendedAxis.contains(_type)) {
+      _requireExtendedAxis = false;
+    }
+
     var paint = Paint()
       ..color = Colors.black54
       ..strokeWidth = 2
@@ -25,7 +32,7 @@ class AxisPainter extends CustomPainter {
 
     // Drawing the axis lines
     canvas.drawLine(
-        _type == "polarRZ"
+        _requireExtendedAxis
             ? startingPoint + Offset(0, _eachSignalBitWidth)
             : startingPoint,
         endingPointY,
@@ -52,7 +59,7 @@ class AxisPainter extends CustomPainter {
         endingPointY + Offset(_eachSignalBitWidth * i, 0),
         startingPoint +
             Offset(_eachSignalBitWidth * i,
-                _type == "polarRZ" ? _eachSignalBitWidth : 0),
+                _requireExtendedAxis ? _eachSignalBitWidth : 0),
         paintSeparator,
       );
     }
