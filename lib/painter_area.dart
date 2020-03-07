@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'painter/axis_painter.dart';
 import 'painter/polarNRZ_painter.dart';
+import 'painter/polarRZ_painter.dart';
 import 'painter/unipolarNRZ_painter.dart';
 import 'painter/unipolarRZ_painter.dart';
 
@@ -24,9 +25,9 @@ class PainterArea extends StatelessWidget {
         return PolarNRZPainter(_bitStream);
         break;
 
-      // case "polarRZ":
-      //   return PolarRZPainter(_bitStream);
-      //   break;
+      case "polarRZ":
+        return PolarRZPainter(_bitStream);
+        break;
 
       default:
         return UnipolarNRZPainter(_bitStream);

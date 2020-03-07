@@ -25,8 +25,8 @@ class AxisPainter extends CustomPainter {
 
     // Drawing the axis lines
     canvas.drawLine(
-        _type == "polarNRZ"
-            ? startingPoint + Offset(0, _eachSignalBitWidth * 2)
+        _type == "polarRZ"
+            ? startingPoint + Offset(0, _eachSignalBitWidth)
             : startingPoint,
         endingPointY,
         paint);
@@ -52,7 +52,7 @@ class AxisPainter extends CustomPainter {
         endingPointY + Offset(_eachSignalBitWidth * i, 0),
         startingPoint +
             Offset(_eachSignalBitWidth * i,
-                _type == "polarNRZ" ? _eachSignalBitWidth : 0),
+                _type == "polarRZ" ? _eachSignalBitWidth : 0),
         paintSeparator,
       );
     }
