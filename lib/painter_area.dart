@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_coding/painter/bipolarNRZ_painter.dart';
 
 import 'painter/axis_painter.dart';
 import 'painter/polarNRZ_painter.dart';
@@ -27,6 +28,10 @@ class PainterArea extends StatelessWidget {
 
       case "polarRZ":
         return PolarRZPainter(_bitStream);
+        break;
+
+      case "bipolarNRZ":
+        return BipolarNRZPainter(_bitStream);
         break;
 
       default:
