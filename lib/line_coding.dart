@@ -10,7 +10,7 @@ class LineCoding extends StatefulWidget {
 
 class _LineCodingState extends State<LineCoding> {
 
-  String _codingTechnique = "bipolarNRZ";
+  String _codingTechnique = "bipolarRZ";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
