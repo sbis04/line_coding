@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// TODO: Change the body to include the RZ Painter
+// TODO: Change the body to include the Polar NRZ Painter
 class PolarNRZPainter extends CustomPainter {
   final String _bitStream;
   PolarNRZPainter(this._bitStream);
@@ -12,14 +12,14 @@ class PolarNRZPainter extends CustomPainter {
       ..strokeWidth = 4
       ..strokeCap = StrokeCap.round;
 
-    var startingPoint;
-    var endingPoint = Offset(30, size.height / 2);
-
     int previousBit = 0;
     bool upp = false;
 
     double _availableWidth = size.width - 70;
     double _eachSignalBitWidth = _availableWidth / _bitStream.length;
+
+    var startingPoint;
+    var endingPoint = Offset(30, size.height / 2 + _eachSignalBitWidth);
 
     if (_eachSignalBitWidth > 180) {
       _eachSignalBitWidth = 180;
@@ -52,7 +52,6 @@ class PolarNRZPainter extends CustomPainter {
 
       print("Present Bit: " + presentBit.toString());
       if (presentBit == previousBit) {
-        print("equal");
         startingPoint = endingPoint;
         endingPoint = endingPoint + Offset(_eachSignalBitWidth, 0);
         canvas.drawLine(
@@ -69,14 +68,14 @@ class PolarNRZPainter extends CustomPainter {
           startingPoint +
               Offset(
                 _eachSignalBitWidth / 2 - 5,
-                _bitWidth > 0 ? _bitWidth + 30 : 30,
+                _bitWidth > 0 ? _bitWidth * 2 + 30 : 30,
               ),
         );
       } else {
         double _bitWidth =
             upp == true ? -_eachSignalBitWidth : _eachSignalBitWidth;
         startingPoint = endingPoint;
-        endingPoint = endingPoint + Offset(0, _bitWidth);
+        endingPoint = endingPoint + Offset(0, _bitWidth * 2);
         canvas.drawLine(
           startingPoint,
           endingPoint,
@@ -88,7 +87,7 @@ class PolarNRZPainter extends CustomPainter {
           startingPoint +
               Offset(
                 _eachSignalBitWidth / 2 - 5,
-                _bitWidth > 0 ? _bitWidth + 30 : 30,
+                _bitWidth > 0 ? _bitWidth * 2 + 30 : 30,
               ),
         );
 

@@ -9,6 +9,8 @@ class LineCoding extends StatefulWidget {
 }
 
 class _LineCodingState extends State<LineCoding> {
+
+  String _codingTechnique = "unipolarNRZ";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,7 @@ class _LineCodingState extends State<LineCoding> {
             }),
             (textString == "" || isValid == false)
                 ? Container()
-                : PainterArea(textString),
+                : PainterArea(textString, _codingTechnique),
           ],
         ),
       ),

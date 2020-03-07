@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AxisPainter extends CustomPainter {
   final String _bitStream;
-  AxisPainter(this._bitStream);
+  final String _type;
+  AxisPainter(this._bitStream, this._type);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -15,8 +16,20 @@ class AxisPainter extends CustomPainter {
     var endingPointY = Offset(30, size.height / 2 - 200);
     var endingPointX = Offset(size.width - 30, size.height / 2);
 
+    double _availableWidth = size.width - 70;
+    double _eachSignalBitWidth = _availableWidth / _bitStream.length;
+
+    if (_eachSignalBitWidth > 180) {
+      _eachSignalBitWidth = 180;
+    }
+
     // Drawing the axis lines
-    canvas.drawLine(startingPoint, endingPointY, paint);
+    canvas.drawLine(
+        _type == "polarNRZ"
+            ? startingPoint + Offset(0, _eachSignalBitWidth * 2)
+            : startingPoint,
+        endingPointY,
+        paint);
     canvas.drawLine(startingPoint, endingPointX, paint);
 
     // Drawing the X-axis arrow
@@ -26,13 +39,6 @@ class AxisPainter extends CustomPainter {
     // Drawing the Y-axis arrow
     canvas.drawLine(endingPointY, endingPointY + Offset(12, 12), paint);
     canvas.drawLine(endingPointY, endingPointY + Offset(-12, 12), paint);
-
-    double _availableWidth = size.width - 70;
-    double _eachSignalBitWidth = _availableWidth / _bitStream.length;
-
-    if (_eachSignalBitWidth > 180) {
-      _eachSignalBitWidth = 180;
-    }
 
     var paintSeparator = Paint()
       ..color = Colors.black12
@@ -44,7 +50,9 @@ class AxisPainter extends CustomPainter {
     for (int i = 1; i < _bitStream.length; i++) {
       canvas.drawLine(
         endingPointY + Offset(_eachSignalBitWidth * i, 0),
-        startingPoint + Offset(_eachSignalBitWidth * i, 0),
+        startingPoint +
+            Offset(_eachSignalBitWidth * i,
+                _type == "polarNRZ" ? _eachSignalBitWidth : 0),
         paintSeparator,
       );
     }
