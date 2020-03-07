@@ -53,14 +53,14 @@ class BipolarNRZPainter extends CustomPainter {
           paint,
         );
 
-        // textPainter.paint(
-        //   canvas,
-        //   startingPoint +
-        //       Offset(
-        //         _eachSignalBitWidth / 2 - 5,
-        //         30,
-        //       ),
-        // );
+        textPainter.paint(
+          canvas,
+          startingPoint +
+              Offset(
+                _eachSignalBitWidth / 2 - 5,
+                _eachSignalBitWidth + 30,
+              ),
+        );
       } else {
         oneCount++;
 
@@ -76,14 +76,14 @@ class BipolarNRZPainter extends CustomPainter {
           paint,
         );
 
-        // textPainter.paint(
-        //   canvas,
-        //   startingPoint +
-        //       Offset(
-        //         _eachSignalBitWidth / 2 - 5,
-        //         30,
-        //       ),
-        // );
+        textPainter.paint(
+          canvas,
+          startingPoint +
+              Offset(
+                _eachSignalBitWidth / 2 - 5,
+                _eachSignalBitWidth + 30,
+              ),
+        );
 
         startingPoint = endingPoint;
         endingPoint = endingPoint + Offset(_eachSignalBitWidth, 0);
