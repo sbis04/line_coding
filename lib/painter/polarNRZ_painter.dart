@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: Change the body to include the Polar NRZ Painter
 class PolarNRZPainter extends CustomPainter {
   final String _bitStream;
   PolarNRZPainter(this._bitStream);
