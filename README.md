@@ -1,16 +1,15 @@
-# line_coding
+# Line Coding
 
-A new Flutter project.
+This is a Flutter app for generating **transmission singnals** from **binary bits** by following different line coding techniques. 
 
-## Getting Started
+There are **six** coding techniques included in this app:
 
-This project is a starting point for a Flutter application.
+* Unipolar Non-Return to Zero 
+* Unipolar Return to Zero
+* Polar Non-Return to Zero
+* Polar Return to Zero
+* Bipolar Non-Return to Zero
+* Bipolar Return to Zero
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
