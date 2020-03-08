@@ -11,5 +11,8 @@ There are **six** coding techniques included in this app:
 * Bipolar Non-Return to Zero
 * Bipolar Return to Zero
 
-## Screenshots
+## App in action
 
+<p align="left">
+  <img src="https://github.com/sbis04/line_coding/blob/master/screenshots/line_coding.gif">
+</p>
