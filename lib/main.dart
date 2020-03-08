@@ -6,7 +6,7 @@ import 'theme/custom_theme.dart';
 
 void main() => runApp(
       CustomTheme(
-        initialThemeKey: MyThemeKeys.DARK,
+        initialThemeKey: MyThemeKeys.LIGHT,
         child: MyApp(),
       ),
     );

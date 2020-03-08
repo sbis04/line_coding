@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'painter_area.dart';
 import 'retrieve_code.dart';
+import 'theme/custom_theme.dart';
+import 'theme/themes.dart';
 
 class LineCoding extends StatefulWidget {
   @override
@@ -9,6 +11,8 @@ class LineCoding extends StatefulWidget {
 }
 
 class _LineCodingState extends State<LineCoding> {
+  MyThemeKeys _presentTheme = MyThemeKeys.LIGHT;
+
   String _codingTechnique = "unipolarNRZ";
   DropdownButton _codingTechniqueSelector() => DropdownButton<String>(
         items: [
@@ -64,11 +68,31 @@ class _LineCodingState extends State<LineCoding> {
         focusColor: Colors.orange,
       );
 
-  // String _codingTechnique = "bipolarRZ";
+  void _changeTheme(BuildContext buildContext, MyThemeKeys key) {
+    CustomTheme.instanceOf(buildContext).changeTheme(key);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            _changeTheme(
+                context,
+                _presentTheme == MyThemeKeys.LIGHT
+                    ? MyThemeKeys.DARK
+                    : MyThemeKeys.LIGHT);
+            _presentTheme == MyThemeKeys.LIGHT
+                ? _presentTheme = MyThemeKeys.DARK
+                : _presentTheme = MyThemeKeys.LIGHT;
+          },
+          icon: Icon(
+            Icons.lightbulb_outline,
+            size: 20,
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Theme.of(context).primaryColor,
         title: Text("Line Coding"),
         elevation: 0,
