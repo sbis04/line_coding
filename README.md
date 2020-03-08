@@ -1,6 +1,6 @@
 # Line Coding
 
-This is a Flutter app for generating **transmission singnals** from **binary bits** by following different line coding techniques. 
+This is a Flutter app for generating **transmission signals** from **binary bits** by following different line coding techniques. 
 
 There are **six** coding techniques included in this app:
 
