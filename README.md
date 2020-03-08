@@ -16,3 +16,11 @@ There are **six** coding techniques included in this app:
 <p align="left">
   <img src="https://github.com/sbis04/line_coding/blob/master/screenshots/line_coding.gif">
 </p>
+
+## Features
+
+* **Dark Mode** support with dynamic theming.
+* Cycle through all the coding techniques easily. (Without losing the state)
+* Visual representation of signal from binary bits.
+
+## Screenshots
