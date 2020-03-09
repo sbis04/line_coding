@@ -1,3 +1,5 @@
+[![Codemagic build status](https://api.codemagic.io/apps/5e65baa89399a2394580983b/5e65baa89399a2394580983a/status_badge.svg)](https://codemagic.io/apps/5e65baa89399a2394580983b/5e65baa89399a2394580983a/latest_build)
+
 # Line Coding
 
 This is a Flutter app for generating **transmission signals** from **binary bits** by following different line coding techniques. 
