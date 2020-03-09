@@ -11,6 +11,8 @@ There are **six** coding techniques included in this app:
 * Bipolar Non-Return to Zero
 * Bipolar Return to Zero
 
+**If you :heart: the app then please star :star: it.**
+
 ## App in action
 
 <p align="left">
